@@ -4,7 +4,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            File Movements
+            Pending Files
             <small>View</small>
         </h1>
     </section>
@@ -30,7 +30,7 @@
                                         <th scope="col">Issuer</th>
                                         <th scope="col">Collector</th>
                                         <th scope="col">Reciever</th>
-                                        <th scope="col">Current Unit</th>
+                                        <th scope="col">Issuer Unit</th>
                                         <th scope="col">Destination Unit</th>
                                         <th scope="col">Issued Date</th>
                                         <th scope="col">Expected Return Date</th>

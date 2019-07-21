@@ -63,7 +63,7 @@
     </div>
 
     <div class="form-group col-xs-11{{ $errors->has('unit_from_id') ? ' has-error' : '' }} mb-0 mt-3">
-        <label for="unit_from_id">Current Unit</label>
+        <label for="unit_from_id">Issuer Unit</label>
         <select class="form-control" id="unit_from_id" name="unit_from_id">
             <option value=""></option>
             @foreach($units as $unit)

@@ -46,9 +46,9 @@
                         <ul class="treeview-menu">
                             <li><a href="{{ route('home') }}"><i class="fa fa-circle-o"></i> Dashboard</a></li>
 
-                            <!-- <li class="treeview">
-                                <li><a href="#"><i class="glyphicon glyphicon-user"></i> Administrators</a></li>
-                            </li> -->
+                            <li class="treeview">
+                                <li><a href="{{ route('register') }}"><i class="glyphicon glyphicon-user"></i> Administrators</a></li>
+                            </li>
 
                             <li class="treeview">
                                 <li><a href="{{ route('departments.index') }}"><i class="fa fa-building"></i> Departments </a></li>
