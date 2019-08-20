@@ -27,7 +27,7 @@ Auth::routes();
 // });
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
+Route::get('/dashboard', 'Web\DashboardController@index')->name('dashboard');
 Route::get('/histories/returnedfiles', 'Web\HistoryController@returned')->name('returnedfiles');
 Route::get('/histories/duefiles', 'Web\HistoryController@due')->name('duefiles');
 Route::resource('/departments', 'Web\DepartmentController');

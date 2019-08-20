@@ -1,8 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Session; 
+use Illuminate\Validation\Rule;
 
 class DashboardController extends Controller
 {
