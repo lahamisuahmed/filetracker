@@ -64,7 +64,7 @@ class HistoryController extends Controller
         //
         $units  = Unit::all();
         $users  = User::all();
-        $files  = File::all();
+        $files  = File::where('status', 'available')->get();
         return view('pages.admin.histories.create', compact('units', 'users', 'files'));
     }
 
@@ -101,7 +101,9 @@ class HistoryController extends Controller
         $this->validate($request, $rules, $customMessages); 
 
         History::create($request->all());
-
+        $file = File::findOrFail($request['file_id']);
+        $file->status = "not_available"; 
+        $file->update();
         notify()->success("Successfully created!","","bottomRight");
 
         return redirect('histories');

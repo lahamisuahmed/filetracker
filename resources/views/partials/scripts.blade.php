@@ -21,3 +21,66 @@
         });   
  	});
 </script>
+
+<!-- Resources -->
+<script src="https://www.amcharts.com/lib/4/core.js"></script>
+<script src="https://www.amcharts.com/lib/4/charts.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+
+
+</style>
+
+<!-- Resources -->
+<script src="https://www.amcharts.com/lib/4/core.js"></script>
+<script src="https://www.amcharts.com/lib/4/charts.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+
+<!-- Chart code -->
+<script>
+am4core.ready(function() {
+
+// Themes begin
+am4core.useTheme(am4themes_animated);
+// Themes end
+
+var chart = am4core.create("chartdiv", am4charts.PieChart3D);
+chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
+
+chart.data = [
+  {
+    day: "Monday",
+    numberOfFiles: 89
+  },
+  {
+    day: "tuesday",
+    numberOfFiles: 70
+  },
+  {
+    day: "Wednesday",
+    numberOfFiles: 40
+  },
+  {
+    day: "Thursday",
+    numberOfFiles: 20
+  },
+  {
+    day: "Friday",
+    numberOfFiles: 89
+  }
+];
+
+chart.innerRadius = am4core.percent(40);
+chart.depth = 120;
+
+chart.legend = new am4charts.Legend();
+
+var series = chart.series.push(new am4charts.PieSeries3D());
+series.dataFields.value = "numberOfFiles";
+series.dataFields.depthValue = "numberOfFiles";
+series.dataFields.category = "day";
+series.slices.template.cornerRadius = 5;
+series.colors.step = 4;
+
+}); // end am4core.ready()
+</script>
+

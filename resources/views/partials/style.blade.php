@@ -13,3 +13,9 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
 
+<style>
+#chartdiv {
+  width: 100%;
+  height: 500px;
+}
+</style>

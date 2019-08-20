@@ -44,7 +44,7 @@
                         </a>
 
                         <ul class="treeview-menu">
-                            <li><a href="{{ route('home') }}"><i class="fa fa-circle-o"></i> Dashboard</a></li>
+                            <li><a href="{{ route('dashboard') }}"><i class="fa fa-circle-o"></i> Dashboard</a></li>
 
                             <!-- <li class="treeview">
                                 <li><a href="#"><i class="glyphicon glyphicon-user"></i> Administrators</a></li>
