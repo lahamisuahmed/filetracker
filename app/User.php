@@ -48,4 +48,6 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Unit', 'unit_id');
     }
+
+    
 }

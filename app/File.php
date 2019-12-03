@@ -8,7 +8,8 @@ use App\History;
 class File extends Model
 {
     //
-	protected $guarded = [];
+    protected $guarded = [];
+    // protected $fillaible = ['status'];
 
 	public function histories()
     {

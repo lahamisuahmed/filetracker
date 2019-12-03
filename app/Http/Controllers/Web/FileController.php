@@ -41,12 +41,15 @@ class FileController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'number' => 'required|unique:files,number'
+            'number' => 'required|unique:files,number',
+            'name' => 'required|unique:files,name'
         ];
 
         $customMessages = [
             'number.required' => 'Please provide the file\'s number.',
-            'number.unique' => 'File Number already exist.'
+            'number.unique' => 'File Number already exist.',
+            'name.required' => 'Please provide the file\'s name.',
+            'name.unique' => 'File name already exist.'
         ];
 
         $this->validate($request, $rules, $customMessages); 
@@ -95,11 +98,17 @@ class FileController extends Controller
                 'required',
                 Rule::unique('files')->ignore($file->id),
             ],
+            'name' => [
+                'required',
+                Rule::unique('files')->ignore($file->id),
+            ],
         ];
 
         $customMessages = [
             'number.required' => 'Please provide the file\'s number.',
             'number.unique' => 'File number already exist.',
+            'name.required' => 'Please provide the file\'s name.',
+            'name.unique' => 'File name already exist.'
         ];
 
         $this->validate($request, $rules, $customMessages);
@@ -107,7 +116,8 @@ class FileController extends Controller
         $file->update($request->all());
 
         notify()->success("Successfully Updated!","","bottomRight");
-        return redirect()->route('files.show',$file->id);
+        //return redirect()->route('files.show',$file->id);
+        return redirect()->route('files.index');
     }
 
     /**

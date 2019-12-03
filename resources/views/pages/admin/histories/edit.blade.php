@@ -11,7 +11,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-8 col-md-push-2">
                 <div class="box box-primary">
                     <form autocomplete="off" novalidate="novalidate" role="form" id="submit_form" class="form-horizontal" method="POST" action="{{ route('histories.update', $history->id) }}">
                         {{csrf_field()}}  

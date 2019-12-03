@@ -6,7 +6,7 @@
         <select class="form-control" id="file_id" name="file_id">
             <option value=""></option>
             @foreach($files as $file)
-                <option value="{{ $file->id }}" @if (old('file_id', $history->file->id) == $file->id) {{ 'selected' }} @endif> {{$file->number}}</option>
+                <option value="{{ $file->id }}" @if (old('file_id', $history->file->id) == $file->id) {{ 'selected' }} @endif> {{$file->number.'--'.$file->name}}</option>
             @endforeach
         </select>
         @if ($errors->has('file_id'))
@@ -16,12 +16,12 @@
         @endif
     </div>
 
-    <div class="form-group col-xs-11{{ $errors->has('sender_id') ? ' has-error' : '' }} mb-0 mt-3">
-        <label for="sender_id">Issuer: </label>
+    <div class="hidden form-group col-xs-11{{ $errors->has('sender_id') ? ' has-error' : '' }} mb-0 mt-3">
+        <label for="sender_id">Issuer:<small class="text-muted">(admin officer giving out the file at the momment)</small> </label>
         <select class="form-control" id="sender_id" name="sender_id">
-            <option value=""></option>
+            <option value="auth()->user()->id"></option>
             @foreach($users as $user)
-                <option value="{{$user->id}}" @if (old('sender_id', $history->sender->id) == $user->id) {{ 'selected' }} @endif>{{$user->name}}</option>
+                <option value="{{$user->id}}" @if (old('sender_id', $history->sender->id) == $user->id) {{ 'selected' }} @endif>{{auth()->user()->name}}</option>
             @endforeach
         </select>
         @if ($errors->has('sender_id'))
@@ -32,11 +32,11 @@
     </div>
 
     <div class="form-group col-xs-11{{ $errors->has('collector_id') ? ' has-error' : '' }} mb-0 mt-3">
-        <label for="collector_id">Collector : </label>
+        <label for="collector_id">Collector :  <small class="text-muted">(enter messanger's name in case of collection by proxy)</small></label>
         <select class="form-control" id="collector_id" name="collector_id">
             <option value=""></option>
             @foreach($users as $user)
-                <option value="{{$user->id}}" @if (old('collector_id', $history->collector->id) == $user->id) {{ 'selected' }} @endif>{{$user->name}}</option>
+                <option value="{{$user->id}}" @if (old('collector_id', $history->collector->id) == $user->id) {{ 'selected' }} @endif>{{$user->name.'--'. \App\Department::find($user->id)->name.'--'.$user->unit->name}}</option>
             @endforeach
         </select>
         @if ($errors->has('collector_id'))
@@ -48,11 +48,11 @@
     
 
     <div class="form-group col-xs-11{{ $errors->has('reciever_id') ? ' has-error' : '' }} mb-0 mt-3">
-        <label for="reciever_id">Receiver: </label>
+        <label for="reciever_id">Receiver:<small class="text-muted">(admin officer requesting the file)</small> </label>
         <select class="form-control" id="reciever_id" name="reciever_id">
             <option value=""></option>
             @foreach($users as $user)
-                <option value="{{$user->id}}" @if (old('reciever_id', $history->reciever->id) == $user->id) {{ 'selected' }} @endif>{{$user->name}}</option>
+                <option value="{{$user->id}}" @if (old('reciever_id', $history->reciever->id) == $user->id) {{ 'selected' }} @endif>{{$user->name.'--'. \App\Department::find($user->id)->name.'--'.$user->unit->name}}</option>
             @endforeach
         </select>
         @if ($errors->has('reciever_id'))
@@ -62,7 +62,7 @@
         @endif
     </div>
 
-    <div class="form-group col-xs-11{{ $errors->has('unit_from_id') ? ' has-error' : '' }} mb-0 mt-3">
+    <div class="hidden form-group col-xs-11{{ $errors->has('unit_from_id') ? ' has-error' : '' }} mb-0 mt-3">
         <label for="unit_from_id">Issuer Unit</label>
         <select class="form-control" id="unit_from_id" name="unit_from_id">
             <option value=""></option>
@@ -82,7 +82,7 @@
         <select class="form-control" id="unit_to_id" name="unit_to_id">
             <option value=""></option>
             @foreach($units as $unit)
-                <option value="{{ $unit->id }}" @if (old('unit_to_id', $history->unitTo->id) == $unit->id) {{ 'selected' }} @endif>{{$unit->name}}</option>
+                <option value="{{ $unit->id }}" @if (old('unit_to_id', $history->unitTo->id) == $unit->id) {{ 'selected' }} @endif>{{$unit->name.'--'.$unit->department->name}}</option>
             @endforeach
         </select>
         @if ($errors->has('unit_to_id'))
@@ -121,6 +121,8 @@
             $('#unit_to_id').select2();
             $('#unit_from_id').select2();
             $('#file_id').select2();
+            $('#collector_id').select2();
+            $('#reciever_id').select2();
         });
     </script>
 @endsection

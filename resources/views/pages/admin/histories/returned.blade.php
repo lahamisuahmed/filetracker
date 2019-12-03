@@ -4,7 +4,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Returned Files
+           Returned Files
             <small>View</small>
         </h1>
     </section>
@@ -25,7 +25,7 @@
                                <table id="dataTable" class="table table-striped table-responsive">
                                   <thead>
                                     <tr class="table-heading-bg">
-                                        <th scope="col">S/N</th>
+                                       <th scope="col">S/N</th>
                                         <th scope="col">File Number</th>
                                         <th scope="col">Issuer</th>
                                         <th scope="col">Collector</th>
@@ -39,7 +39,7 @@
                                   <tbody>
                                       @foreach($histories as $history)
                                         <tr>
-                                            <td>{{ $loop->iteration}} </td>
+                                          <td>{{ $loop->iteration}} </td>
                                             <td>{{ $history->file->number }}</td>
                                             <td>{{ $history->sender->name }}</td>
                                             <td>{{ $history->collector->name }}</td>
@@ -48,12 +48,6 @@
                                             <td>{{ $history->unitTo->name}}</td> 
                                             <td>{{ date('d-m-Y', strtotime($history->issue_date)) }} </td>
                                             <td>{{ date('d-m-Y', strtotime($history->returned_date)) }}</td>
-                                            <td> 
-                                                <!-- <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('histories.show' ,$history->id) }}" role="button" style=" margin-right: 5px; "> </a> -->
-                                                <!-- <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-random" href="{{ route('histories.edit' ,$history->id) }}" role="button" style=" margin-right: 5px; "> </a> -->
-                                                <!-- <a class=" delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-historiesId="{{ $history->id }}"></a> -->
-                                                
-                                            </td>
                                         </tr>
                                        @endforeach
                                    </tbody>

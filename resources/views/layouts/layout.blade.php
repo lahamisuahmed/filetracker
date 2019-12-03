@@ -15,7 +15,7 @@
         <header class="main-header">
             <a href="{{ route('home') }}" class="logo">
                 <span class="logo-mini"><b>FMS</span>
-                <span class="logo-lg"><b>Penetralia Hub FMS</b></span>
+                <span class="logo-lg"><b>Penetralia Hub FTS</b></span>
             </a>
             @include("partials.navbar")
         </header>
@@ -46,9 +46,9 @@
                         <ul class="treeview-menu">
                             <li><a href="{{ route('dashboard') }}"><i class="fa fa-circle-o"></i> Dashboard</a></li>
 
-                            <li class="treeview">
+                            {{-- <li class="treeview">
                                 <li><a href="{{ route('register') }}"><i class="glyphicon glyphicon-user"></i> Administrators</a></li>
-                            </li>
+                            </li> --}}
 
                             <li class="treeview">
                                 <li><a href="{{ route('departments.index') }}"><i class="fa fa-building"></i> Departments </a></li>
@@ -59,7 +59,7 @@
                             </li>
 
                             <li class="treeview">
-                                <li><a href="{{ route('files.index') }}"><i class="fa fa-file"></i> Files </a></li>
+                                <li><a href="{{ route('files.index') }}"><i class="fa fa-file"></i>Add Files</a></li>
                             </li>
 
                             <li class="treeview">

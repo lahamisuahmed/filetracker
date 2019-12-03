@@ -26,7 +26,9 @@
                                     <thead>
                                         <tr class="table-heading-bg">
                                             <th scope="col">S/N</th>
+                                            <th scope="col">Number</th>
                                             <th scope="col">Name</th>
+                                            <th scope="col">Created On</th>
                                             <th scope="col">Action</th>
                                         </tr>
                                     </thead>
@@ -36,6 +38,8 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $file->number}}</td>
+                                                <td>{{ $file->name}}</td>
+                                                <td>{{ $file->created_at}}</td>
                                                 <td>
                                                     <div class="btn-group">
                                                          <a class="edit-btn btn btn-info btn-sm fa fa-edit" href="{{ route('files.show' , $file->id) }}" role="button" style=" margin-right: 5px; ">    Edit  </a>

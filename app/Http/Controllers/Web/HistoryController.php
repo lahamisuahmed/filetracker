@@ -22,7 +22,7 @@ class HistoryController extends Controller
     public function index()
     {
         //
-        $histories = History::orderBy('id', 'asc')->where('status', 'borrowed')->paginate(10);
+        $histories = History::orderBy('id', 'asc')->where('status', 'borrowed')->paginate();
         return view('pages.admin.histories.list', ['histories' => $histories]);
     }
 
@@ -35,7 +35,7 @@ class HistoryController extends Controller
     public function returned()
     {
         //
-        $histories = History::orderBy('id', 'asc')->where('status', 'returned')->paginate(10);
+        $histories = History::orderBy('returned_date', 'desc')->where('status', 'returned')->paginate();
         return view('pages.admin.histories.returned', ['histories' => $histories]);
     }
 
@@ -50,7 +50,7 @@ class HistoryController extends Controller
         //
 
         $mytime = Carbon::now(); 
-        $histories = History::orderBy('id', 'asc')->where('status','!=','returned')->whereDate('returned_date', '<=', $mytime)->paginate(10);
+        $histories = History::orderBy('returned_date', 'desc')->where('status','!=','returned')->whereDate('returned_date', '<=', $mytime)->paginate(10);
         return view('pages.admin.histories.due', ['histories' => $histories]);
     }
 
@@ -131,12 +131,16 @@ class HistoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        // returns a file and update history and file status
         $history = History::findOrFail($id);
+        $file_id = $history->file_id;
+        $file = File::findOrFail($file_id);
         $history->status = "returned";
+        $file->status = "available";
         $history->update();
+        $file->update();
         notify()->success("Successfully Returned File!","","bottomRight");
-        return redirect()->route('histories.show',$history->id);
+        return redirect()->route('histories.index');
     }
 
     /**
@@ -149,6 +153,8 @@ class HistoryController extends Controller
     public function update(Request $request, History $history){
 
         $rules = [
+            // 'name' => 'required|unique:projects,name,'. $project->id,
+            'file_id' => 'required',
             'unit_from_id' => 'required',
             'unit_to_id' => 'required',
             'sender_id' => 'required',
@@ -159,6 +165,7 @@ class HistoryController extends Controller
         ];
 
         $customMessages = [
+            // 'file_id.unique' => 'this cant be updated,please return the file and re-issue ',
             'unit_from_id' => 'Choose current file Location',
             'unit_to_id' => 'Choose file destination',
             'sender_id' => 'Choose the person issuing the File',
@@ -173,7 +180,7 @@ class HistoryController extends Controller
         $history->update($request->all());
 
         notify()->success("Successfully Updated!","","bottomRight");
-        return redirect()->route('histories.show',$history->id);
+        return redirect()->route('returnedfiles');
     }
 
     /**

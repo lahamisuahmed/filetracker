@@ -26,12 +26,12 @@
                                   <thead>
                                     <tr class="table-heading-bg">
                                         <th scope="col">S/N</th>
-                                        <th scope="col">File Number</th>
+                                        <th scope="col">File</th>
                                         <th scope="col">Issuer</th>
                                         <th scope="col">Collector</th>
                                         <th scope="col">Reciever</th>
-                                        <th scope="col">Issuer Unit</th>
-                                        <th scope="col">Destination Unit</th>
+                                        {{-- <th scope="col">Issuer Unit</th>
+                                        <th scope="col">Destination Unit</th> --}}
                                         <th scope="col">Issued Date</th>
                                         <th scope="col">Expected Return Date</th>
                                         <th scope="col">Action</th>
@@ -41,16 +41,28 @@
                                       @foreach($histories as $history)
                                         <tr>
                                             <td>{{ $loop->iteration}} </td>
-                                            <td>{{ $history->file->number }}</td>
-                                            <td>{{ $history->sender->name }}</td>
+                                            <td>
+                                                <span class="">{{ $history->file->number }} </span><br>
+                                                <span class="text-muted"><small>{{ $history->file->name }}</small></span>
+                                            </td>
+                                            <td>
+                                                <span class="">{{ $history->sender->name }} </span><br>
+                                                <span class="text-muted"><small>{{\App\Department::find($history->sender->id)->name.'--'. $history->sender->unit->name }}</small></span>
+                                            </td>
                                             <td>{{ $history->collector->name }}</td>
-                                            <td>{{ $history->reciever->name }}</td>
-                                            <td>{{ $history->unitFrom->name}} </td>
-                                            <td>{{ $history->unitTo->name}}</td> 
+                                            <td>
+                                                <span class="">{{ $history->reciever->name }} </span><br>
+                                                <span class="text-muted"><small>{{\App\Department::find($history->reciever->id)->name.'--'. $history->reciever->unit->name }}</small></span>
+                                            </td>
+                                            {{-- <td>{{ $history->unitFrom->name}} </td>
+                                            <td>
+                                                <span class="">{{ $history->unitTo->name }} </span><br>
+                                                <span class="text-muted"><small>{{\App\Department::find($history->unitTo->id)->name}}</small></span>
+                                            </td>  --}}
                                             <td>{{ date('d-m-Y', strtotime($history->issue_date)) }} </td>
                                             <td>{{ date('d-m-Y', strtotime($history->returned_date)) }}</td>
                                             <td> 
-                                                <!-- <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-eye-open" href="{{ route('histories.show' ,$history->id) }}" role="button" style=" margin-right: 5px; "> </a> -->
+                                                 <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-edit" href="{{ route('histories.show' ,$history->id) }}" role="button" style=" margin-right: 5px; "> </a>
                                                 <a class="edit-btn btn btn-info btn-sm glyphicon glyphicon-random" href="{{ route('histories.edit' ,$history->id) }}" role="button" style=" margin-right: 5px; "> </a>
                                                 <!-- <a class=" delete-btn btn btn-danger btn-sm fa fa-trash" data-toggle="modal" data-target="#deleteModal" href="#" role="button" data-historiesId="{{ $history->id }}"></a> -->
                                                 
