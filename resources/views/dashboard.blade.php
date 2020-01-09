@@ -6,7 +6,7 @@
      <!-- Info boxes -->
       <div class="row">
             <div class="box-header with-border">
-              <h3 class="box-title">System Total Recap Report</h3>
+              <h3 class="box-title">System Total Recap Reports</h3>
             </div>
         <div class="col-md-3 col-sm-6 col-xs-12">
           <div class="info-box">
